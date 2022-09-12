@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
         // res.cookie('key', value)
         res.cookie('userId', newUser.id)
         // redirect to the homepage
-        res.redirect('/')
+        res.redirect('/users/profile')
     } catch(err) {
         console.log(err)
         res.send('server error')
@@ -58,13 +58,12 @@ router.post('/login', async (req, res) => {
         } else {
             console.log('loggin the user in!!!')
             res.cookie('userId', user.id)
-            res.redirect('/')
+            res.redirect('/users/profile')
         }
     } catch(err) {
         console.log(err)
         res.send('server error')
     }
-
 })
 
 // GET /users/logout -- log out a user by clearing the stored cookie
@@ -73,6 +72,18 @@ router.get('/logout', (req, res) => {
     res.clearCookie('userId')
     // redirect to the homepage
     res.redirect('/')
+})
+
+router.get('/profile', (req, res) => {
+    // if the user is not logged ... we need to redirect to the login form
+    if (!res.locals.user) {
+        res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource.')
+    // otherwise, show them their profile
+    } else {
+        res.render('users/profile.ejs', {
+            user: res.locals.user
+        })
+    }
 })
 
 module.exports = router
