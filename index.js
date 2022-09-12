@@ -18,7 +18,6 @@ app.use(cookieParser())
 // our custom auth middleware
 app.use(async (req, res, next) => {
     // console.log('hello from a middleware 👋')
-    res.locals.myData = 'hello, fellow route!'
     // if there is a cookie on the incoming request
     if (req.cookies.userId) {
         // decrypt the user id before we look up the user in the db

@@ -3,13 +3,13 @@ const crytpo = require('crypto-js')
 // encryption is a two way process -- data is encrypted using an algorithm and a key
 // you must know the key to decrpt the data
 
-// const mySecrets = 'i ate candy for brekfast'
+const mySecrets = 'i ate candy for brekfast'
 
-// const myEncryption = crytpo.AES.encrypt(mySecrets, 'myEncKey')
-// console.log(myEncryption.toString())
+const myEncryption = crytpo.AES.encrypt(mySecrets, 'myEncKey')
+console.log(myEncryption.toString())
 
-// const myDecrypt = crytpo.AES.decrypt(myEncryption.toString(), 'hello')
-// console.log(myDecrypt.toString(crytpo.enc.Utf8)) // select character encoding
+const myDecrypt = crytpo.AES.decrypt(myEncryption.toString(), 'hello')
+console.log(myDecrypt.toString(crytpo.enc.Utf8)) // select character encoding
 
 // hashing -- one way process
 // 1. hash functions always return the same size hash regardless of the input
