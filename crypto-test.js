@@ -24,3 +24,8 @@ console.log(hashedPassword)
 
 // we can only compare strings to a hash to see if they match
 console.log(bcrypt.compareSync('Banana', hashedPassword))
+
+// node's crypto package
+const crypto = require('crypto')
+
+crypto.createHash('sha256').update('a', 'utf8').digest().toString('hex')
